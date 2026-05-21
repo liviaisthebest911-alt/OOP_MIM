@@ -1,0 +1,55 @@
+Tạo transaction lịch sử cho tài khoản nguồn
+Transaction 1
+
+
+        transactions.add(new Transaction(
+            generateTransactionId(),
+            "WITHDRAW",
+            amount,
+            accountNumber,
+            accountNumber,
+            "Withdraw from account"
+        ));
+Ý nghĩa
+
+Hệ thống coi chuyển tiền gồm:
+
+bước 1:
+
+rút tiền khỏi tài khoản nguồn
+
+Transaction này ghi:
+Field	Value
+type	WITHDRAW
+from	accountNumber
+to	accountNumber
+
+Transaction 2
+        transactions.add(new Transaction(
+            generateTransactionId(),
+            "TRANSFER",
+            amount,
+            accountNumber,
+            targetAccount.getAccountNumber(),
+            "Transfer to ..."
+        ));
+Ý nghĩa
+
+Ghi nhận:
+
+đã chuyển tiền sang tài khoản khác
+
+Tại sao cần 2 transaction?
+
+Vì hệ thống banking thường tách:
+
+Loại	Ý nghĩa
+WITHDRAW	tiền ra khỏi tài khoản
+TRANSFER	giao dịch chuyển khoản
+
+Giúp:
+
+audit
+sao kê
+thống kê
+trace giao dịch
