@@ -1,4 +1,6 @@
-import Part4.Sensor;
+package Part4.Sensor;
+
+import Part4.Sensor.WeatherSensor;
 
 
 /**

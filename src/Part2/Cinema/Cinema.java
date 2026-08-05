@@ -1,5 +1,10 @@
 package Part2.Cinema;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Cinema {
@@ -81,5 +86,148 @@ public class Cinema {
 
     public String getName() {
         return name;
+    }
+
+    public void processFile(String fileName) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+        try (BufferedReader rd = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = rd.readLine()) != null) {
+                line = line.trim();
+
+                if (line.isBlank() || line.startsWith("#")) {
+                    continue;
+                }
+
+                String[] parts = line.split(";");
+
+                // =================================================
+                // MOVIE
+                // =================================================
+                if (parts[0].equalsIgnoreCase("MOVIE")) {
+
+                    String title = parts[1];
+                    String genre = parts[2];
+                    int duration = Integer.parseInt(parts[3]);
+
+                    Movie movie = new Movie(title, genre, duration);
+
+                    addMovie(movie);
+
+                    System.out.println("Đã thêm phim: " + title);
+                }
+
+                // =================================================
+                // SHOWTIME
+                // =================================================
+                else if (parts[0].equalsIgnoreCase("SHOWTIME")) {
+
+                    String movieTitle = parts[1];
+                    LocalDateTime showTime = LocalDateTime.parse(parts[2], formatter);
+
+                    Movie foundMovie = null;
+                    for (Movie movie : movies) {
+
+                        if (movie.getTitle().equalsIgnoreCase(movieTitle)) {
+
+                            foundMovie = movie;
+                            break;
+                        }
+                    }
+
+                    if (foundMovie == null) {
+
+                        System.out.println("Không tìm thấy phim: " + movieTitle);
+                        continue;
+                    }
+
+                    Showtime showtime = new Showtime(foundMovie, showTime);
+
+
+                    addShowtime(showtime);
+
+                    System.out.println("Đã thêm suất chiếu cho phim " + movieTitle);
+                }
+
+                // =================================================
+                // DISPLAY_SEATS
+                // =================================================
+                else if (parts[0].equalsIgnoreCase("DISPLAY_SEATS")) {
+
+                    String movieTitle = parts[1];
+
+                    LocalDateTime showTime = LocalDateTime.parse(parts[2], formatter);
+
+                    Showtime foundShowtime = null;
+
+                    for (Showtime st : showtimes) {
+
+                        boolean sameMovie = st.getMovie().getTitle().equalsIgnoreCase(movieTitle);
+
+                        boolean sameTime = st.getShowtime().equals(showTime);
+
+                        if (sameMovie && sameTime) {
+
+                            foundShowtime = st;
+                            break;
+                        }
+                    }
+
+                    if (foundShowtime == null) {
+
+                        System.out.println("Không tìm thấy suất chiếu.");
+                        continue;
+                    }
+
+                    foundShowtime.displaySeats();
+                }
+
+                // =================================================
+                // BOOK
+                // =================================================
+                else if (parts[0].equalsIgnoreCase("BOOK")) {
+
+                    String movieTitle = parts[1];
+
+                    LocalDateTime showTime = LocalDateTime.parse(parts[2], formatter);
+
+                    Showtime foundShowtime = null;
+
+                    // tìm suất chiếu
+                    for (Showtime st : showtimes) {
+
+                        boolean sameMovie = st.getMovie().getTitle().equalsIgnoreCase(movieTitle);
+
+                        boolean sameTime = st.getShowtime().equals(showTime);
+
+                        if (sameMovie && sameTime) {
+
+                            foundShowtime = st;
+                            break;
+                        }
+                    }
+
+                    if (foundShowtime == null) {
+
+                        System.out.println("Không tìm thấy suất chiếu.");
+                        continue;
+                    }
+
+                    // C4,C5
+                    List<String> seatNumbers = Arrays.asList(parts[3].split(","));
+
+                    Ticket ticket = bookTickets(foundShowtime, seatNumbers);
+
+                    if (ticket != null) {
+                        ticket.displayTicketDetails();
+                    }
+                }
+            }
+
+        } catch (IOException e) {
+            System.out.println("Lỗi đọc file: " + e.getMessage());
+        }
     }
 }

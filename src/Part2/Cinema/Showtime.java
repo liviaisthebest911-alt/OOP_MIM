@@ -1,8 +1,14 @@
 package Part2.Cinema;
 
+import javax.swing.text.DateFormatter;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -84,4 +90,7 @@ public class Showtime {
     public String getFormattedShowtime() {
         return showtime.format(DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy"));
     }
+
+
+
 }

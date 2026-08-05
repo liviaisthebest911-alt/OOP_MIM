@@ -68,8 +68,10 @@ class CourseManager {
      * Đầu ra: danh sách tối đa n môn học
      */
     public List<Course> getTopCourses(int n) {
-        List<Course> lst = sortByCredits(false);
-        return lst.subList(0,Math.min(n,lst.size()));
+        return courses.stream()
+                .sorted(Comparator.comparingInt(Course::getCredits))
+                .limit(n)
+                .toList();
     }
 
     /**
