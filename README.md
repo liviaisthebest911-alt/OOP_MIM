@@ -1,35 +1,37 @@
-OOP_MIM
-Repository tổng hợp bài tập thực hành Lập trình hướng đối tượng (OOP) bằng Java, được tổ chức theo 9 chủ đề (9 topics) chính của OOP.
-Giới thiệu
-Dự án này là nơi lưu trữ các bài tập, ví dụ minh họa nhằm rèn luyện và củng cố kiến thức về lập trình hướng đối tượng, được tạo bằng IntelliJ IDEA (Java project).
-Công nghệ sử dụng
-	•	Ngôn ngữ: Java
-	•	IDE: IntelliJ IDEA
-Cấu trúc thư mục
+# ☕ OOP_MIM - VNU HUS
+
+Chào mừng đến với repository **OOP_MIM**! Đây là nơi lưu trữ toàn bộ mã nguồn, bài tập thực hành và dự án cá nhân thuộc môn học Lập trình Hướng đối tượng (Object-Oriented Programming), khoa Toán - Cơ - Tin học (MIM) - Trường Đại học Khoa học Tự nhiên, ĐHQGHN.
+
+## 📖 Giới thiệu
+
+Repository này được xây dựng trong quá trình học tập và rèn luyện tư duy lập trình hướng đối tượng với ngôn ngữ Java. Mục tiêu của các bài tập nhằm nắm vững cách thiết kế hệ thống, tối ưu hóa mã nguồn và áp dụng đúng các nguyên lý lập trình cốt lõi.
+
+## 🚀 Các chủ đề & Kiến thức bao quát
+
+Dự án bao gồm các bài toán từ cơ bản đến nâng cao, tập trung vào các khía cạnh:
+* **Các khái niệm nền tảng:** Lớp (Class), Đối tượng (Object), Giao diện (Interface).
+* **4 tính chất cốt lõi của OOP:** 
+  * Đóng gói (Encapsulation)
+  * Kế thừa (Inheritance)
+  * Đa hình (Polymorphism)
+  * Trừu tượng (Abstraction)
+* **Xử lý dữ liệu:** Ứng dụng Java Collections Framework (List, Set, Map) trong việc lưu trữ và quản lý dữ liệu.
+* **Các bài toán tiêu biểu:** Quản lý sinh viên (`Student`), quản lý tài khoản (`Account`), tính toán số phức (`MyComplex`), và các thuật toán sắp xếp đối tượng (sử dụng `Comparable` và `Comparator`).
+
+## 🛠️ Công nghệ sử dụng
+
+* **Ngôn ngữ:** Java (JDK 17+)
+* **Môi trường / Công cụ:** IntelliJ IDEA / Eclipse / VS Code
+* **Hệ điều hành:** Đã được kiểm thử trên cả Windows và Linux.
+
+## 📂 Cấu trúc thư mục (Tham khảo)
+
+```text
 OOP_MIM/
-├── .idea/              # Cấu hình project của IntelliJ IDEA
-├── src/                # Mã nguồn Java, chứa bài tập theo từng chủ đề OOP
-├── .gitignore
-└── OOPExercise.iml     # File module của IntelliJ
-9 chủ đề OOP được đề cập
-	1.	Lớp và đối tượng (Class & Object)
-	2.	Đóng gói (Encapsulation)
-	3.	Kế thừa (Inheritance)
-	4.	Đa hình (Polymorphism)
-	5.	Trừu tượng hóa (Abstraction)
-	6.	Interface
-	7.	Constructor & Overloading
-	8.	Static & Instance members
-	9.	Exception Handling
-Ghi chú: Danh sách trên là các chủ đề OOP phổ biến; bạn có thể đối chiếu và chỉnh sửa lại theo đúng nội dung thực tế trong từng thư mục con của src/ để README phản ánh chính xác bài tập đã làm.
-Cách chạy dự án
-	1.	Clone repository:
-git clone https://github.com/liviaisthebest911-alt/OOP_MIM.git
-2.	Mở project bằng IntelliJ IDEA (mở thư mục gốc chứa file OOPExercise.iml).
-	3.	Chọn file .java muốn chạy trong thư mục src/, sau đó nhấn Run.
-Yêu cầu
-	•	JDK (Java Development Kit) đã được cài đặt (khuyến nghị JDK 8 trở lên).
-Đóng góp
-Đây là repository phục vụ mục đích học tập cá nhân. Mọi góp ý, pull request đều được hoan nghênh.
-Giấy phép
-Chưa có giấy phép cụ thể được công bố cho dự án này.
+├── src/
+│   ├── basic_concepts/     # Các bài tập làm quen với Class, Object
+│   ├── inheritance/        # Các bài tập về Kế thừa và Đa hình
+│   ├── collections/        # Ứng dụng ArrayList, HashMap, Set...
+│   └── projects/           # Các mini-project tổng hợp (Ví dụ: Hệ thống quản lý)
+├── docs/                   # Tài liệu môn học, đề bài tập
+└── README.md
